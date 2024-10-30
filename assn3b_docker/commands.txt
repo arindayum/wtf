@@ -1,0 +1,23 @@
+docker --version
+
+docker pull openjdk
+
+
+docker run --name richie -it -d openjdk
+
+docker exec -it richie jshell
+
+
+jshell> System.out.println("hello world");
+
+/exit
+
+
+docker stop richie
+
+
+docker rm richie
+
+
+
+docker image prune

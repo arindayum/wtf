@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Montserrat', sans-serif; /* Using Montserrat Font */
+            background-image: url('https://i.pinimg.com/564x/5b/95/28/5b9528c2e962478d1ce9c51cfc80b13b.jpg'); /* Pinterest image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Semi-transparent overlay for readability */
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+            padding: 30px;
+            border-radius: 16px; /* Rounded corners for the form */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Styling for the heading */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+        }
+
+        /* Input field styling */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px; /* Smaller padding for smaller text areas */
+            margin-bottom: 15px; /* Reduced margin */
+            border: 1px solid #ccc;
+            border-radius: 8px; /* Rounded corners for input fields */
+            font-size: 14px;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px; /* Rounded corners for buttons */
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Clear button styling */
+        #clearStorage {
+            background-color: #ff4d4d;
+            margin-top: 10px;
+        }
+
+        #clearStorage:hover {
+            background-color: #e64545;
+        }
+
+        /* Link styling */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 480px) {
+            .overlay {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay container for form -->
+    <div class="overlay">
+        <h1>User Registration</h1>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="city">City:</label> <!-- Added city field -->
+            <input type="text" id="city" name="city" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Button to clear local storage -->
+        <button id="clearStorage">Clear User Data</button>
+
+        <!-- Link to view registered users -->
+        <a href="users.html">View Registered Users</a>
+    </div>
+
+    <script>
+        document.getElementById('clearStorage').addEventListener('click', function() {
+            localStorage.removeItem('users'); // This clears only the user data
+            alert('User data cleared!');
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get user input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const city = document.getElementById('city').value; // Get city value
+
+            // Create user object
+            const user = {
+                name: name,
+                email: email,
+                password: password,
+                city: city // Include city in user object
+            };
+
+            // Retrieve existing users from local storage or initialize an empty array
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push(user); // Add new user to the array
+
+            // Save updated users array back to local storage
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('User registered successfully!');
+
+            // Reset the form
+            this.reset();
+        });
+    </script>
+    <script src="app.js"></script>
+
+</body>
+</html>
