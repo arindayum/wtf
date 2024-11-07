@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>User Registration</h2>
+  <form (ngSubmit)="registerUser()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required [(ngModel)]="registerData.username" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" required [(ngModel)]="registerData.password" name="password" class="form-control">
+    </div>
+    <button type="submit" class="btn">Register</button>
+  </form>
+
+  <h3>Registered Users:</h3>
+  <ul class="user-list">
+    <li *ngFor="let user of registeredUsers" class="user-item">
+      {{ user.username }}
+    </li>
+  </ul>
+</div>
