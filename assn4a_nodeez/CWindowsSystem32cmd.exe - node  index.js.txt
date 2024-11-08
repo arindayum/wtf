@@ -1,0 +1,5 @@
+Microsoft Windows [Version 10.0.22631.4169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\racha\OneDrive\Desktop\wt_assn\assn4a>node index.js
+Server running at http://localhost:3000
