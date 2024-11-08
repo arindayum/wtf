@@ -1,17 +1,15 @@
 {
-  "name": "assn4a",
+  "name": "trial",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "rachana",
+  "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "express": "^4.21.0",
-    "jquery": "^3.7.1"
-  },
-  "keywords": [],
-  "description": ""
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0"
+  }
 }
